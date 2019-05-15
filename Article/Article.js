@@ -30,3 +30,61 @@ class Article {
 
 const articles = document.querySelectorAll('.article');
 articles.forEach(article => new Article(article));
+
+// Stretch - Constructor
+
+const articleDataObject = {}; // The parent object where all of the article data submissions get added to.
+
+// Constructor to create object from given data through something like an input page with specified input fields.
+class ArticleData {
+  constructor(title, date, content, img) {
+    this.title = title;
+    this.date = date;
+    this.content = content;
+    this.img = img;
+  }
+}
+
+// Constructor to take data (a child object) from the articleDataObject and create the necessary elements to form an article from it.
+class ArticleGenerator {
+  constructor(article, data) {
+    this.article = article;
+    this.data = data;
+    this.createHeading();
+    this.createDate();
+    this.createContent();
+    this.appendImg();
+  }
+
+  createHeading() {
+    const title = document.createElement('h2');
+    title.textContent = this.data.title;
+    this.article.append(title);
+  }
+
+  createDate() {
+    const date = document.createElement('p');
+    date.classList.add('date');
+    date.textContent = this.data.date;
+    this.article.append(date);
+  }
+
+  createContent() {
+    const paragraph = document.createElement('p');
+    paragraph.classList.add('content');
+    paragraph.textContent = this.data.content;
+    this.article.append(paragraph);
+  }
+
+  appendImg() {
+    const img = document.createElement('img');
+    img.classList.add('article-img');
+    img.setAttribute('src', this.data.img);
+    this.article.append(img);
+  }
+}
+
+articles.forEach((article, index) => {
+  new ArticleGenerator(article, data[index]);
+  new Article(article);
+});
