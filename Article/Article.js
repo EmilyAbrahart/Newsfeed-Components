@@ -9,11 +9,10 @@ class Article {
     this.expandButton = domElement.querySelector('.expandButton');
     // Using your expandButton reference, update the text on your expandButton to say "expand"
     this.expandButton.textContent = '-----';
-   
+
     // Set a click handler on the expandButton reference, calling the expandArticle method.
     this.expandButton.addEventListener('click', this.expandArticle.bind(this));
   }
-
 
   expandArticle() {
     // Using our reference to the domElement, toggle a class to expand or hide the article.
@@ -42,56 +41,56 @@ articles.forEach(article => new Article(article));
 
 // const articleDataObject = {}; // The parent object where all of the article data submissions get added to.
 
-// // Constructor to create object from given data through something like an input page with specified input fields.
-// class ArticleData {
-//   constructor(title, date, content, img) {
-//     this.title = title;
-//     this.date = date;
-//     this.content = content;
-//     this.img = img;
-//   }
-// }
+// Constructor to create object from given data through something like an input page with specified input fields.
+class ArticleData {
+  constructor(title, date, content, img) {
+    this.title = title;
+    this.date = date;
+    this.content = content;
+    this.img = img;
+  }
+}
 
-// // Constructor to take data (a child object) from the articleDataObject and create the necessary elements to form an article from it.
-// class ArticleGenerator {
-//   constructor(article, data) {
-//     this.article = article;
-//     this.data = data;
-//     this.createHeading();
-//     this.createDate();
-//     this.createContent();
-//     this.appendImg();
-//   }
+// Constructor to take data (a child object) from the articleDataObject and create the necessary elements to form an article from it.
+class ArticleGenerator {
+  constructor(article, data) {
+    this.article = article;
+    this.data = data;
+    this.createHeading();
+    this.createDate();
+    this.createContent();
+    this.appendImg();
+  }
 
-//   createHeading() {
-//     const title = document.createElement('h2');
-//     title.textContent = this.data.title;
-//     this.article.append(title);
-//   }
+  createHeading() {
+    const title = document.createElement('h2');
+    title.textContent = this.data.title;
+    this.article.append(title);
+  }
 
-//   createDate() {
-//     const date = document.createElement('p');
-//     date.classList.add('date');
-//     date.textContent = this.data.date;
-//     this.article.append(date);
-//   }
+  createDate() {
+    const date = document.createElement('p');
+    date.classList.add('date');
+    date.textContent = this.data.date;
+    this.article.append(date);
+  }
 
-//   createContent() {
-//     const paragraph = document.createElement('p');
-//     paragraph.classList.add('content');
-//     paragraph.textContent = this.data.content;
-//     this.article.append(paragraph);
-//   }
+  createContent() {
+    const paragraph = document.createElement('p');
+    paragraph.classList.add('content');
+    paragraph.textContent = this.data.content;
+    this.article.append(paragraph);
+  }
 
-//   appendImg() {
-//     const img = document.createElement('img');
-//     img.classList.add('article-img');
-//     img.setAttribute('src', this.data.img);
-//     this.article.append(img);
-//   }
-// }
+  appendImg() {
+    const img = document.createElement('img');
+    img.classList.add('article-img');
+    img.setAttribute('src', this.data.img);
+    this.article.append(img);
+  }
+}
 
-// articles.forEach((article, index) => {
-//   new ArticleGenerator(article, articleDataObject[index]);
-//   new Article(article);
-// });
+articles.forEach((article, data, index) => {
+  new ArticleGenerator(article, data[index]);
+  new Article(article);
+});
